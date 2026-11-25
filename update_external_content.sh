@@ -1,6 +1,5 @@
 git submodule update --recursive --remote
 rm how-phasors-work/myst.yml
-cd how-electricity-markets-work/ && git checkout version-for-blog && git reset --hard origin/version-for-blog && cd ../../ && git add how-electricity-markets-work/
 rm how-electricity-markets-work/myst.yml
 cd python-cluedo/ && git checkout for-blog && git reset --hard origin/for-blog && cd ../../ && git add python-cluedo/
 cd external/bluegreen_resume_template/ && git checkout green-resume && git reset --hard origin/green-resume & cd ../../ && git add external/bluegreen_resume_template/
