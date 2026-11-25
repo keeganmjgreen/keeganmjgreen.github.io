@@ -31,13 +31,13 @@ An electrical engineering book about analysis of AC circuits and power grids.
 
 :::{card}
 :header: TyPSA<br>&nbsp;
-:link: https://keeganmjgreen.github.io/typsa/
+:link: https://keegangreen.ca/typsa/
 A strongly-typed wrapper around the PyPSA library for power system analysis.
 :::
 
 :::{card}
 :header: Simulation of Mid-Air Refueling of a Hydrogen-Powered Airliner
-:link: https://keeganmjgreen.github.io/green_airliner/index.html
+:link: https://keegangreen.ca/green_airliner/index.html
 Design and feasibility study determining how to refuel a sustainably-powered commercial airliner.
 :::
 
