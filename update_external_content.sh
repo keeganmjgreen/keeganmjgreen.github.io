@@ -1,8 +1,8 @@
 git submodule update --recursive --remote
-rm external/how_phasors_work/myst.yml
-cd external/ontario_electricity_market/ && git checkout version-for-blog && git reset --hard origin/version-for-blog && cd ../../ && git add external/ontario_electricity_market/
-rm external/ontario_electricity_market/myst.yml
-cd external/python-cluedo/ && git checkout for-blog && git reset --hard origin/for-blog && cd ../../ && git add external/python-cluedo/
+rm how-phasors-work/myst.yml
+cd how-electricity-markets-work/ && git checkout version-for-blog && git reset --hard origin/version-for-blog && cd ../../ && git add how-electricity-markets-work/
+rm how-electricity-markets-work/myst.yml
+cd python-cluedo/ && git checkout for-blog && git reset --hard origin/for-blog && cd ../../ && git add python-cluedo/
 cd external/bluegreen_resume_template/ && git checkout green-resume && git reset --hard origin/green-resume & cd ../../ && git add external/bluegreen_resume_template/
 
 python3 -c '

@@ -5,21 +5,21 @@ project:
   title: Keegan Green
   toc:
     - file: index.md
-    - file: external/ontario_electricity_market/1_introduction_to_wholesale_electricity_markets.md
-    - file: external/ontario_electricity_market/2_the_supply_and_demand_of_electricity.md
-    - file: external/ontario_electricity_market/3_real_time_and_day_ahead_electricity_markets.md
+    - file: how-electricity-markets-work/index.md
+    - file: how-electricity-markets-work/2_the_supply_and_demand_of_electricity.md
+    - file: how-electricity-markets-work/3_real_time_and_day_ahead_electricity_markets.md
     - file: clearing_electricity_markets_using_pypsa.ipynb
-    - file: opf_using_different_modeling_interfaces/opf_using_different_modeling_interfaces.md
-    - file: external/how_phasors_work/0_prelude.md
+    - file: opf_using_different_modeling_interfaces/index.md
+    - file: how-phasors-work/index.md
       title: "Book: How Phasors Work"
       children:
-        - file: external/how_phasors_work/1_introduction.ipynb
-        - file: external/how_phasors_work/2_what_is_a_phasor.ipynb
-        - file: external/how_phasors_work/3_life_with_and_without_phasors.ipynb
-        - file: external/how_phasors_work/4_building_an_ac_circuit_analyzer.ipynb
-        - file: external/how_phasors_work/5_complex_power_and_the_power_factor.ipynb
-        - file: external/how_phasors_work/6_three_phase_power.ipynb
-        - file: external/how_phasors_work/7_grid_modeling.md
+        - file: how-phasors-work/1_introduction.ipynb
+        - file: how-phasors-work/2_what_is_a_phasor.ipynb
+        - file: how-phasors-work/3_life_with_and_without_phasors.ipynb
+        - file: how-phasors-work/4_building_an_ac_circuit_analyzer.ipynb
+        - file: how-phasors-work/5_complex_power_and_the_power_factor.ipynb
+        - file: how-phasors-work/6_three_phase_power.ipynb
+        - file: how-phasors-work/7_grid_modeling.md
     - file: software_engineering_notes/index.md
       children:
         - file: software_engineering_notes/apis/rest_apis.md
@@ -37,10 +37,10 @@ project:
         - file: software_engineering_notes/system_design.md
         - file: software_engineering_notes/terms.md
     - file: git_good.md
-    - file: external/python-cluedo/README.md
+    - file: python-cluedo/index.md
       children:
-        - file: external/python-cluedo/docs/cluedo_sat_problem.md
-    - file: iot_integration_of_a_hydroponic_farm/iot_integration_of_a_hydroponic_farm.md
+        - file: python-cluedo/docs/cluedo_sat_problem.md
+    - file: iot_integration_of_a_hydroponic_farm/index.md
       children:
         - file: iot_integration_of_a_hydroponic_farm/farm_process_model.md
     - file: resume.md
@@ -50,6 +50,7 @@ project:
           title: Download as PDF
 site:
   options:
+    folders: true
     logo: img/profile_photo.png
     logo_dark: img/profile_photo.png
     logo_text: Keegan Green

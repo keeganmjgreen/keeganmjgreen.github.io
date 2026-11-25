@@ -1,12 +1,12 @@
 [submodule "external/how_phasors_work"]
-	path = external/how_phasors_work
+	path = how-phasors-work
 	url = https://github.com/keeganmjgreen/how-phasors-work.git
 [submodule "external/ontario_electricity_market"]
-	path = external/ontario_electricity_market
+	path = how-electricity-markets-work
 	url = https://github.com/keeganmjgreen/how-electricity-markets-work.git
 [submodule "external/bluegreen_resume_template"]
 	path = external/bluegreen_resume_template
 	url = https://github.com/keeganmjgreen/bluegreen_resume_template.git
 [submodule "external/python-cluedo"]
-	path = external/python-cluedo
+	path = python-cluedo
 	url = https://github.com/keeganmjgreen/python-cluedo.git
