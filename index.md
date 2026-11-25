@@ -19,13 +19,13 @@ site:
 
 :::{card}
 :header: Introduction to Wholesale Electricity Markets
-:link: /introduction-to-wholesale-electricity-markets
+:link: how-electricity-markets-work/index.md
 A technical explainer on the economic and power system principles that drive electricity market operation.
 :::
 
 :::{card}
 :header: How Phasors Work<br>&nbsp;
-:link: /prelude
+:link: how-phasors-work/index.md
 An electrical engineering book about analysis of AC circuits and power grids.
 :::
 
@@ -43,13 +43,13 @@ Design and feasibility study determining how to refuel a sustainably-powered com
 
 :::{card}
 :header: IoT Integration of<br>a Hydroponic Farm<br>&nbsp;
-:link: /iot-integration-of-a-hydroponic-farm
+:link: iot_integration_of_a_hydroponic_farm/index.md
 Integrating a small hydroponic farm with sensors and actuators for remote monitoring and control.
 :::
 
 :::{card}
 :header: Résumé<br><br>&nbsp;
-:link: /resume
+:link: resume.md
 See more of my work experience and projects.
 :::
 
