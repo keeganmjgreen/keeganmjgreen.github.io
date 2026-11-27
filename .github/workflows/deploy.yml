@@ -1,22 +1,20 @@
 # Deploys the blog to GitHub Pages, building the books from their latest `main`.
 #
-# The books don't know about the blog: instead of the book repos triggering a deploy,
-# this workflow checks them hourly and rebuilds only when a book (or the blog) has
-# changed since the last deploy. The live site records what it was built from in
-# /build-versions.txt.
+# Runs when the blog is pushed, when a book repo pushes to its `main` (each book's
+# notify-blog workflow sends a `book-updated` repository_dispatch event), or manually.
+# The live site records what it was built from in /build-versions.txt.
 
 name: Jupyter Book (via myst) GitHub Pages Deploy
 on:
   push:
     branches: [main]
-  schedule:
-    - cron: '17 * * * *' # Hourly check for new book commits.
-  workflow_dispatch: # "Run workflow" button: always deploys.
+  repository_dispatch:
+    types: [book-updated]
+  workflow_dispatch: # "Run workflow" button.
 env:
   # `BASE_URL` determines, relative to the root of the domain, the URL that your site is served from.
   # If your site lives at the root of the domain, at `https://mydomain.org`, set `BASE_URL=''`.
   BASE_URL: ''
-  SITE_URL: https://keegangreen.ca
 
 permissions:
   contents: read
@@ -28,31 +26,7 @@ concurrency:
   group: 'pages'
   cancel-in-progress: false
 jobs:
-  check:
-    runs-on: ubuntu-latest
-    outputs:
-      changed: ${{ steps.versions.outputs.changed }}
-      phasors: ${{ steps.versions.outputs.phasors }}
-      markets: ${{ steps.versions.outputs.markets }}
-      versions: ${{ steps.versions.outputs.versions }}
-    steps:
-      - id: versions
-        run: |
-          phasors=$(git ls-remote https://github.com/keeganmjgreen/how-phasors-work.git refs/heads/main | cut -f1)
-          markets=$(git ls-remote https://github.com/keeganmjgreen/how-electricity-markets-work.git refs/heads/main | cut -f1)
-          versions="blog=$GITHUB_SHA how-phasors-work=$phasors how-electricity-markets-work=$markets"
-          deployed=$(curl -fsSL "$SITE_URL/build-versions.txt" || true)
-          echo "Latest:   $versions"
-          echo "Deployed: $deployed"
-          changed=true
-          if [ "$GITHUB_EVENT_NAME" = schedule ] && [ "$versions" = "$deployed" ]; then changed=false; fi
-          echo "changed=$changed" >> "$GITHUB_OUTPUT"
-          echo "phasors=$phasors" >> "$GITHUB_OUTPUT"
-          echo "markets=$markets" >> "$GITHUB_OUTPUT"
-          echo "versions=$versions" >> "$GITHUB_OUTPUT"
   deploy:
-    needs: check
-    if: needs.check.outputs.changed == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -63,12 +37,14 @@ jobs:
           submodules: true
       - name: Check out the books' latest main
         run: |
-          for book in how-phasors-work:${{ needs.check.outputs.phasors }} how-electricity-markets-work:${{ needs.check.outputs.markets }}; do
-            path=${book%%:*}; sha=${book#*:}
-            git -C "$path" fetch --depth=1 origin "$sha"
-            git -C "$path" checkout --detach "$sha"
-            rm "$path/myst.yml" # Each book's own project config; the blog's myst.yml includes the chapters.
+          versions="blog=$GITHUB_SHA"
+          for book in how-phasors-work how-electricity-markets-work; do
+            git -C "$book" fetch --depth=1 origin main
+            git -C "$book" checkout --detach FETCH_HEAD
+            versions="$versions $book=$(git -C "$book" rev-parse HEAD)"
+            rm "$book/myst.yml" # Each book's own project config; the blog's myst.yml includes the chapters.
           done
+          echo "$versions" | tee build-versions.txt
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - uses: actions/setup-node@v4
@@ -79,7 +55,7 @@ jobs:
       - name: Build HTML Assets
         run: |
           jupyter-book build --html
-          echo "${{ needs.check.outputs.versions }}" > _build/html/build-versions.txt
+          mv build-versions.txt _build/html/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
