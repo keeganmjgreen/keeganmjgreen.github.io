@@ -40,6 +40,7 @@ project:
     - file: python-cluedo/index.md
       children:
         - file: python-cluedo/docs/cluedo_sat_problem.md
+    - file: different_carbon_processes_explained/different_carbon_processes_explained.md
     - file: iot_integration_of_a_hydroponic_farm/index.md
       children:
         - file: iot_integration_of_a_hydroponic_farm/farm_process_model.md
